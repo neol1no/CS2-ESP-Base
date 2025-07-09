@@ -17,9 +17,8 @@ namespace MTRX_WARE
     public class Renderer : Overlay
     {
         // render variables
-        public Vector2 screenSize = new Vector2(1920, 1080); // own screen size
-
-        // entities copy | more thread safe method
+        public Vector2 screenSize = new Vector2(1920, 1080);
+        
         private ConcurrentQueue<Entity> entities = new ConcurrentQueue<Entity>();
         private Entity localPlayer = new Entity();
         private readonly object entityLock = new object();
@@ -37,30 +36,25 @@ namespace MTRX_WARE
         private bool enableBoxESP = true;
         private bool enableSkeletonESP = true;
         private bool enableDistanceESP = true;
-        private Vector4 enemyColor = new Vector4(1, 0, 0, 1); // default red
-        private Vector4 hiddenColor = new Vector4(0, 0, 0, 1); // default black
-        private Vector4 teamColor = new Vector4(0, 1, 0, 1); // default green
-        private Vector4 nameColor = new Vector4(1, 1, 1, 1); // default white
-        private Vector4 boneColor = new Vector4(1, 1, 1, 1); // default white
-        private Vector4 distanceColor = new Vector4(1, 1, 1, 1); // default white
+        private Vector4 enemyColor = new Vector4(1, 0, 0, 1); 
+        private Vector4 hiddenColor = new Vector4(0, 0, 0, 1); 
+        private Vector4 teamColor = new Vector4(0, 1, 0, 1); 
+        private Vector4 nameColor = new Vector4(1, 1, 1, 1); 
+        private Vector4 boneColor = new Vector4(1, 1, 1, 1); 
+        private Vector4 distanceColor = new Vector4(1, 1, 1, 1); 
 
-        // Declare the color variables globally (outside of the render loop) to make them persistent
         Vector4 windowBgColor = new Vector4(0.2f, 0.2f, 0.2f, 0.8f);
         Vector4 boxBgColor = new Vector4(0.2f, 0.2f, 0.2f, 1.0f);
         Vector4 headerColor = new Vector4(0.18f, 0.18f, 0.18f, 1.0f);
         Vector4 buttonColor = new Vector4(0.18f, 0.18f, 0.18f, 1.0f);
         Vector4 textColor = new Vector4(1.0f, 1.0f, 1.0f, 1.0f);
 
-        // Define custom colors for the checkbox
-        Vector4 checkboxColor = new Vector4(0.2f, 0.8f, 0.2f, 1.0f); // Example: Green color for checkbox
+        Vector4 checkboxColor = new Vector4(0.2f, 0.8f, 0.2f, 1.0f); 
 
-        // Change checkbox color when the checkbox is not checked
         Vector4 checkboxInactiveColor = new Vector4(1.0f, 0.6f, 0.6f, 1.0f);
-
 
         float boneThickness = 20;
 
-        // draw list
         ImDrawListPtr drawlist;
 
         private int switchTabs = 0;
@@ -72,28 +66,23 @@ namespace MTRX_WARE
         {
             ImGui.Begin("MTRX-Ware.io");
 
-            // Apply persistent colors at the start (once for the entire window)
             ImGui.PushStyleColor(ImGuiCol.WindowBg, windowBgColor);
-            ImGui.PushStyleColor(ImGuiCol.TitleBg, headerColor);  // Apply header color
-            ImGui.PushStyleColor(ImGuiCol.TitleBgActive, headerColor);  // Active header color
+            ImGui.PushStyleColor(ImGuiCol.TitleBg, headerColor);  
+            ImGui.PushStyleColor(ImGuiCol.TitleBgActive, headerColor);  
             ImGui.PushStyleColor(ImGuiCol.Button, buttonColor);
             ImGui.PushStyleColor(ImGuiCol.ButtonHovered, new Vector4(0.25f, 0.25f, 0.25f, 1.0f));
             ImGui.PushStyleColor(ImGuiCol.ButtonActive, new Vector4(0.22f, 0.22f, 0.22f, 1.0f));
             ImGui.PushStyleColor(ImGuiCol.Text, textColor);
             ImGui.PushStyleVar(ImGuiStyleVar.FrameRounding, 10.0f);
 
-            // Set color for the checkmark (checked state)
             ImGui.PushStyleColor(ImGuiCol.CheckMark, checkboxColor);
 
-            // Set background color for the checkbox (unchecked state)
             ImGui.PushStyleColor(ImGuiCol.FrameBg, checkboxInactiveColor);
-            ImGui.PushStyleColor(ImGuiCol.FrameBgHovered, new Vector4(0.47058823529411764f, 0.47058823529411764f, 0.47058823529411764f, 0.9f)); // Hovered background for unchecked checkbox
-            ImGui.PushStyleColor(ImGuiCol.FrameBgActive, new Vector4(0.2f, 0.8f, 0.2f, 1.0f)); // Active background for unchecked checkbox
+            ImGui.PushStyleColor(ImGuiCol.FrameBgHovered, new Vector4(0.47058823529411764f, 0.47058823529411764f, 0.47058823529411764f, 0.9f)); 
+            ImGui.PushStyleColor(ImGuiCol.FrameBgActive, new Vector4(0.2f, 0.8f, 0.2f, 1.0f));
 
-            // Create columns for the menu and content
-            ImGui.Columns(2, "menu_columns", true); // Two columns, with the option to divide them
+            ImGui.Columns(2, "menu_columns", true); 
 
-            // Left column (Menu buttons)
             ImGui.SetColumnWidth(0, 150);
             ImGui.BeginGroup();
             if (ImGui.Button("Aimbot", new Vector2(130.0f, 30.0f)))
@@ -115,7 +104,6 @@ namespace MTRX_WARE
             
             ImGui.NextColumn();
 
-            // Right column (Content)
             ImGui.BeginGroup();
 
             
@@ -174,31 +162,31 @@ namespace MTRX_WARE
 
 
 
-                    // Enable ESP checkbox
+                    // ESP checkbox
                     ImGui.SetCursorPos(new Vector2(columnX + xOffset, yOffset));
                     ImGui.Checkbox("Enable ESP", ref enableESP);
 
-                    // Enable Box ESP checkbox
+                    // Box ESP checkbox
                     yOffset = ImGui.GetCursorPosY(); 
                     ImGui.SetCursorPos(new Vector2(columnX + xOffset, yOffset));
                     ImGui.Checkbox("Enable Box ESP", ref enableBoxESP);
 
-                    // Enable Skeleton ESP checkbox
+                    // Skeleton ESP checkbox
                     yOffset = ImGui.GetCursorPosY();
                     ImGui.SetCursorPos(new Vector2(columnX + xOffset, yOffset));
                     ImGui.Checkbox("Enable Skeleton ESP", ref enableSkeletonESP);
 
-                    // Enable Line ESP checkbox
+                    // Line ESP checkbox
                     yOffset = ImGui.GetCursorPosY();
                     ImGui.SetCursorPos(new Vector2(columnX + xOffset, yOffset));
                     ImGui.Checkbox("Enable Line ESP", ref enableLineESP);
 
-                    // Enable Name ESP checkbox
+                    // Name ESP checkbox
                     yOffset = ImGui.GetCursorPosY();
                     ImGui.SetCursorPos(new Vector2(columnX + xOffset, yOffset));
                     ImGui.Checkbox("Enable Name ESP", ref enableNameESP);
 
-                    // Enable Distance ESP checkbox
+                    // Distance ESP checkbox
                     yOffset = ImGui.GetCursorPosY();
                     ImGui.SetCursorPos(new Vector2(columnX + xOffset, yOffset));
                     ImGui.Checkbox("Enable Distance ESP", ref enableDistanceESP);
@@ -269,7 +257,6 @@ namespace MTRX_WARE
                     ImGui.SetCursorPos(new Vector2(columnX + 150 + xOffset, yOffset - 5));
                     if (ImGui.ColorEdit4("##bgcolor", ref windowBgColor, ImGuiColorEditFlags.NoInputs | ImGuiColorEditFlags.NoLabel | ImGuiColorEditFlags.AlphaPreviewHalf))
                     {
-                        // Color updated
                     }
 
                     // Box Background Color picker
@@ -281,7 +268,6 @@ namespace MTRX_WARE
                     ImGui.SetCursorPos(new Vector2(columnX + 150 + xOffset, yOffset - 5));
                     if (ImGui.ColorEdit4("##boxbgcolor", ref boxBgColor, ImGuiColorEditFlags.NoInputs | ImGuiColorEditFlags.NoLabel | ImGuiColorEditFlags.AlphaPreviewHalf))
                     {
-                        // Color updated
                     }
 
                     // Header Color picker
@@ -293,7 +279,6 @@ namespace MTRX_WARE
                     ImGui.SetCursorPos(new Vector2(columnX + 150 + xOffset, yOffset - 5));
                     if (ImGui.ColorEdit4("##headercolor", ref headerColor, ImGuiColorEditFlags.NoInputs | ImGuiColorEditFlags.NoLabel | ImGuiColorEditFlags.AlphaPreviewHalf))
                     {
-                        // Color updated
                     }
 
                     // Button Color picker
@@ -305,7 +290,6 @@ namespace MTRX_WARE
                     ImGui.SetCursorPos(new Vector2(columnX + 150 + xOffset, yOffset - 5));
                     if (ImGui.ColorEdit4("##buttoncolor", ref buttonColor, ImGuiColorEditFlags.NoInputs | ImGuiColorEditFlags.NoLabel | ImGuiColorEditFlags.AlphaPreviewHalf))
                     {
-                        // Color updated
                     }
 
                     // Text Color picker
@@ -317,7 +301,6 @@ namespace MTRX_WARE
                     ImGui.SetCursorPos(new Vector2(columnX + 150 + xOffset, yOffset - 5));
                     if (ImGui.ColorEdit4("##textcolor", ref textColor, ImGuiColorEditFlags.NoInputs | ImGuiColorEditFlags.NoLabel | ImGuiColorEditFlags.AlphaPreviewHalf))
                     {
-                        // Color updated
                     }
                     break;
             }
@@ -325,8 +308,7 @@ namespace MTRX_WARE
             ImGui.EndGroup();
             ImGui.Columns(1);
 
-            // Pop style colors after the menu rendering
-            ImGui.PopStyleColor(7); // Pop 7 color settings
+            ImGui.PopStyleColor(7);
             ImGui.PopStyleVar();
         }
 
@@ -341,31 +323,22 @@ namespace MTRX_WARE
 
         private DateTime lastInsertPressTime = DateTime.MinValue;
 
-        // Time delay in seconds (1 second)
         private const float keyPressDelay = 1.0f;
 
-        // Importing the GetAsyncKeyState function from user32.dll
         [DllImport("user32.dll", CharSet = CharSet.Auto, CallingConvention = CallingConvention.Winapi)]
         public static extern short GetAsyncKeyState(int vKey);
-
         private bool isMenuVisible = false;
-
         private bool IsInsertKeyPressed()
         {
-            // Virtual key code for the Insert key is 0x2D
             const int VK_INSERT = 0x2D;
             short keyState = GetAsyncKeyState(VK_INSERT);
-
-            // Check if the Insert key is pressed and if 1 second has passed since the last press
             if ((keyState & 0x8000) != 0)
             {
-                // Get the current time
                 DateTime currentTime = DateTime.Now;
 
-                // Check if the key press delay has passed
                 if ((currentTime - lastInsertPressTime).TotalSeconds >= keyPressDelay)
                 {
-                    lastInsertPressTime = currentTime;  // Update the last press time
+                    lastInsertPressTime = currentTime; 
                     return true;
                 }
             }
@@ -375,26 +348,23 @@ namespace MTRX_WARE
 
         protected override void Render()
         {
-            // Example for ImGui's key state checking:
             if (IsInsertKeyPressed())
             {
                 Console.WriteLine("Insert key pressed!");
-                isMenuVisible = !isMenuVisible; // Toggle menu visibility
+                isMenuVisible = !isMenuVisible; 
             }
 
-            // Render the menu if visible
             if (isMenuVisible)
             {
                 RenderMenu();
             }
             else
             {
-                DrawOverlay(screenSize);  // Or any other background drawing logic
+                DrawOverlay(screenSize);
             }
 
             drawlist = ImGui.GetWindowDrawList();
 
-                // draw stuff
                 if (enableESP)
                 {
                     if (enableBoxESP)
@@ -445,7 +415,7 @@ namespace MTRX_WARE
                             if (EntityOnScreen(entity) && entity != localPlayer)
                             {
                                 entity.distance = Vector3.Distance(localPlayer.position, entity.position);
-                                DrawDistance(localPlayer, entity); // Always recalculate and render
+                                DrawDistance(localPlayer, entity); 
                             }
                         }
                     }
@@ -454,7 +424,6 @@ namespace MTRX_WARE
 
         private void DrawESPPreview(ImDrawListPtr previewDrawList, Vector2 previewPosition, Vector2 previewSize)
         {
-            // Dummy entity setup
             List<Entity> previewEntities = new List<Entity>
     {
         new Entity { name = "Enemy1", team = 2, spotted = true, position2D = new Vector2(50, 50), viewPosition2D = new Vector2(50, 20) },
@@ -462,20 +431,15 @@ namespace MTRX_WARE
         new Entity { name = "Teammate1", team = 1, spotted = true, position2D = new Vector2(100, 150), viewPosition2D = new Vector2(100, 120) }
     };
 
-            // Dummy local player for reference
             Entity dummyLocalPlayer = new Entity { position = new Vector3(0, 0, 0) };
 
-            // Scaling factor for the preview
             float scale = previewSize.X / 200.0f;
 
-            // Iterate through dummy entities and draw enabled ESP features
             foreach (var entity in previewEntities)
             {
-                // Scale positions for preview
                 Vector2 scaledPosition2D = previewPosition + (entity.position2D * scale);
                 Vector2 scaledViewPosition2D = previewPosition + (entity.viewPosition2D * scale);
 
-                // Draw ESP features based on settings
                 if (enableBoxESP)
                 {
                     float entityHeight = scaledPosition2D.Y - scaledViewPosition2D.Y;
@@ -503,7 +467,6 @@ namespace MTRX_WARE
             }
         }
 
-        // check position
         bool EntityOnScreen(Entity entity)
         {
             if (entity.position2D.X > 0 && entity.position2D.X < screenSize.X && entity.position2D.Y > 0 && entity.position2D.Y < screenSize.Y)
@@ -513,7 +476,6 @@ namespace MTRX_WARE
             return false;
         }
 
-        // drawing method
 
         private void DrawBones(Entity entity)
         {
@@ -552,17 +514,13 @@ namespace MTRX_WARE
 
         public void DrawBox(Entity entity)
         {
-            // box height
             float entityHeight = entity.position2D.Y - entity.viewPosition2D.Y;
 
-            // box dimensions
             Vector2 rectTop = new Vector2(entity.viewPosition2D.X - entityHeight / 3, entity.viewPosition2D.Y);
             Vector2 rectBottom = new Vector2(entity.viewPosition2D.X + entityHeight / 3, entity.position2D.Y);
 
-            // color
             Vector4 boxColor = localPlayer.team == entity.team ? teamColor : enemyColor;
 
-            // hidden check
             if (VisCheck)
                 boxColor = entity.spotted == true ? boxColor : hiddenColor;
 
@@ -570,14 +528,9 @@ namespace MTRX_WARE
         }
         private void DrawLine(Entity entity)
         {   
-            // team color
             Vector4 lineColor = localPlayer.team == entity.team ? teamColor: enemyColor;
-
-            // draw line
             drawlist.AddLine(new Vector2(screenSize.X / 2, screenSize.Y), entity.position2D, ImGui.ColorConvertFloat4ToU32(lineColor));
         }
-
-        // transfer entity methods
 
         public void UpdateEntities(IEnumerable<Entity> newEntities)
         {
@@ -599,7 +552,7 @@ namespace MTRX_WARE
             }
         }
 
-        void DrawOverlay(Vector2 screenSize) // Overlay window
+        void DrawOverlay(Vector2 screenSize) 
         {
             ImGui.SetNextWindowSize(screenSize);
             ImGui.SetNextWindowPos(new Vector2(0, 0));

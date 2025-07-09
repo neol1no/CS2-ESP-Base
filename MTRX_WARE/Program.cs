@@ -48,46 +48,35 @@ while (true)
 {
     entities.Clear();
 
-    // get entity list
     IntPtr entityList = swed.ReadPointer(client, dwEntityList);
 
-    // make entry
     IntPtr listEntry = swed.ReadPointer(entityList, 0x10);
 
-    // get localplayer
     IntPtr localPlayerPawn = swed.ReadPointer(client, dwLocalPlayerPawn);
     localPlayer.team = swed.ReadInt(localPlayerPawn, m_iTeamNum);
 
-    // entity list loop
     for (int i = 0; i < 64; i++)
     {
-        // Get controller
         IntPtr currentController = swed.ReadPointer(listEntry, i * 0x78);
         if (currentController == IntPtr.Zero) continue;
 
-        // Get pawn handle
         int pawnHandle = swed.ReadInt(currentController, m_hPlayerPawn);
         if (pawnHandle == 0) continue;
 
-        // Get pawn + make second entry
         IntPtr listEntry2 = swed.ReadPointer(entityList, 0x8 * ((pawnHandle & 0x7FFF) >> 9) + 0x10);
         if (listEntry2 == IntPtr.Zero) continue;
 
-        // Get current pawn
         IntPtr currentPawn = swed.ReadPointer(listEntry2, 0x78 * (pawnHandle & 0x1FF));
         if (currentPawn == IntPtr.Zero) continue;
 
-        // Life check
         int lifeState = swed.ReadInt(currentPawn, m_lifeState);
         if (lifeState != 256) continue;
 
-        // Get matrix
         float[] viewMatrix = swed.ReadMatrix(client + dwViewMatrix);
 
         IntPtr sceneNode = swed.ReadPointer(currentPawn, m_pGameSceneNode);
         IntPtr boneMatrix = swed.ReadPointer(sceneNode, m_modelState + 0x80);
 
-        // Populate entity
         Entity entity = new Entity();
 
         entity.name = swed.ReadString(currentController, m_iszPlayerName, 16).Split("\0")[0];
@@ -98,26 +87,20 @@ while (true)
         entity.position2D = Calculate.WorldToScreen(viewMatrix, entity.position, screenSize);
         entity.viewPosition2D = Calculate.WorldToScreen(viewMatrix, Vector3.Add(entity.position, entity.viewOffset), screenSize);
 
-        // Get local player position
         localPlayer.position = swed.ReadVec(localPlayerPawn, m_vOldOrigin);
 
-        // Update distance for local player
         foreach (var otherEntity in entities)
         {
             otherEntity.distance = Vector3.Distance(otherEntity.position, localPlayer.position);
         }
 
-
-        // Read bone data
         entity.bones = Calculate.ReadBones(boneMatrix, swed);
         entity.bones2d = Calculate.ReadBones2d(entity.bones, viewMatrix, screenSize);
 
-        // Add the entity to the entities list
         entities.Add(entity);
     }
 
 
-    // Update renderer data (pass the entities and localPlayer)
     renderer.UpdateLocalPlayer(localPlayer);
     renderer.UpdateEntities(entities);
 

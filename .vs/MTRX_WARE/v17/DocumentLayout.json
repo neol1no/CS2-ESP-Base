@@ -1,25 +1,25 @@
 {
   "Version": 1,
-  "WorkspaceRootPath": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\",
+  "WorkspaceRootPath": "C:\\github\\CS2-ESP-Base\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\mtrx_ware\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|c:\\github\\cs2-esp-base\\mtrx_ware\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|solutionrelative:mtrx_ware\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\mtrx_ware\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|C:\\github\\CS2-ESP-Base\\mtrx_ware\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|solutionrelative:mtrx_ware\\entity.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|e:\\coding\\mtrx ware\\2 mtrx_ware_ext\\mtrx-ware.io\\mtrx_ware\\renderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|C:\\github\\CS2-ESP-Base\\mtrx_ware\\renderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|solutionrelative:mtrx_ware\\renderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\mtrx_ware\\calculate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|C:\\github\\CS2-ESP-Base\\mtrx_ware\\calculate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|solutionrelative:mtrx_ware\\calculate.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\mtrx_ware\\mtrx_ware.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
+      "AbsoluteMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|C:\\github\\CS2-ESP-Base\\mtrx_ware\\mtrx_ware.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|",
       "RelativeMoniker": "D:0:0:{2BD4106A-A738-4D58-85C3-9EDF44461BF3}|MTRX_WARE\\MTRX_WARE.csproj|solutionrelative:mtrx_ware\\mtrx_ware.csproj||{FA3CD31E-987B-443A-9B81-186104E8DAC1}|"
     }
   ],
@@ -36,9 +36,9 @@
               "$type": "Document",
               "DocumentIndex": 3,
               "Title": "Calculate.cs",
-              "DocumentMoniker": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\Calculate.cs",
+              "DocumentMoniker": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\Calculate.cs",
               "RelativeDocumentMoniker": "MTRX_WARE\\Calculate.cs",
-              "ToolTip": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\Calculate.cs",
+              "ToolTip": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\Calculate.cs",
               "RelativeToolTip": "MTRX_WARE\\Calculate.cs",
               "ViewState": "AQIAAAMAAAAAAAAAAAAAAAoAAAAhAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
@@ -48,9 +48,9 @@
               "$type": "Document",
               "DocumentIndex": 4,
               "Title": "MTRX_WARE.csproj",
-              "DocumentMoniker": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\MTRX_WARE.csproj",
+              "DocumentMoniker": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\MTRX_WARE.csproj",
               "RelativeDocumentMoniker": "MTRX_WARE\\MTRX_WARE.csproj",
-              "ToolTip": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\MTRX_WARE.csproj",
+              "ToolTip": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\MTRX_WARE.csproj",
               "RelativeToolTip": "MTRX_WARE\\MTRX_WARE.csproj",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000758|",
@@ -60,37 +60,35 @@
               "$type": "Document",
               "DocumentIndex": 2,
               "Title": "Renderer.cs",
-              "DocumentMoniker": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\Renderer.cs",
+              "DocumentMoniker": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\Renderer.cs",
               "RelativeDocumentMoniker": "MTRX_WARE\\Renderer.cs",
-              "ToolTip": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\Renderer.cs",
+              "ToolTip": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\Renderer.cs",
               "RelativeToolTip": "MTRX_WARE\\Renderer.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAAC4AAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T15:56:17.936Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-19T15:56:17.936Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
               "Title": "Entity.cs",
-              "DocumentMoniker": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\Entity.cs",
+              "DocumentMoniker": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\Entity.cs",
               "RelativeDocumentMoniker": "MTRX_WARE\\Entity.cs",
-              "ToolTip": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\Entity.cs",
+              "ToolTip": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\Entity.cs",
               "RelativeToolTip": "MTRX_WARE\\Entity.cs",
               "ViewState": "AQIAAAAAAAAAAAAAAAAAABUAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-10-19T15:51:51.387Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-10-19T15:51:51.387Z"
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
               "Title": "Program.cs",
-              "DocumentMoniker": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\Program.cs",
+              "DocumentMoniker": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\Program.cs",
               "RelativeDocumentMoniker": "MTRX_WARE\\Program.cs",
-              "ToolTip": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\Program.cs",
+              "ToolTip": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\Program.cs",
               "RelativeToolTip": "MTRX_WARE\\Program.cs",
-              "ViewState": "AQIAACYAAAAAAAAAAAAiwDgAAAAEAAAA",
+              "ViewState": "AQIAAFQAAAAAAAAAAAAiwGEAAAA/AAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-10-19T15:47:53.537Z",
               "EditorCaption": ""

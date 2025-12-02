@@ -5266,19 +5266,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\CEO I Matrix\\.nuget\\packages\\": {}
+    "C:\\Users\\Matrix\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\MTRX_WARE.csproj",
+      "projectUniqueName": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\MTRX_WARE.csproj",
       "projectName": "MTRX_WARE",
-      "projectPath": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\MTRX_WARE.csproj",
-      "packagesPath": "C:\\Users\\CEO I Matrix\\.nuget\\packages\\",
-      "outputPath": "E:\\CODING\\mtrx ware\\2 MTRX_WARE_ext\\MTRX-Ware.io\\MTRX_WARE\\obj\\",
+      "projectPath": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\MTRX_WARE.csproj",
+      "packagesPath": "C:\\Users\\Matrix\\.nuget\\packages\\",
+      "outputPath": "C:\\github\\CS2-ESP-Base\\MTRX_WARE\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\CEO I Matrix\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Matrix\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [

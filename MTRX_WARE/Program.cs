@@ -1,8 +1,56 @@
 ﻿using MTRX_WARE;
 using Swed64;
 using System.Numerics;
+using System.Drawing;
 
 // main logic
+
+// console logic
+ConsoleUtils.EnableVT();
+Console.Clear();
+
+string asciiArt = @"
+  __  __ _______ _____  __   __       __          __     _____  ______ 
+ |  \/  |__   __|  __ \ \ \ / /       \ \        / /\   |  __ \|  ____|
+ | \  / |  | |  | |__) | \ V / ______  \ \  /\  / /  \  | |__) | |__   
+ | |\/| |  | |  |  _  /   > < |______|  \ \/  \/ / /\ \ |  _  /|  __|  
+ | |  | |  | |  | | \ \  / . \           \  /\  / ____ \| | \ \| |____ 
+ |_|  |_|  |_|  |_|  \_\/_/ \_\           \/  \/_/    \_\_|  \_\______|
+                                                                       
+";
+
+ConsoleUtils.WriteGradient(asciiArt, System.Drawing.Color.FromArgb(138, 43, 226), System.Drawing.Color.Red);
+
+Console.ResetColor();
+int windowWidth = Console.WindowWidth;
+string copyright = "credit: github.com/neol1no";
+Console.SetCursorPosition(windowWidth - copyright.Length - 2, Console.CursorTop);
+Console.WriteLine(copyright);
+Console.WriteLine();
+
+Console.WriteLine("Select Product:");
+Console.WriteLine("[1] mtrx-ware (esp-base)");
+Console.Write("\nSelection: ");
+
+var key = Console.ReadKey(true);
+if (key.Key != ConsoleKey.D1 && key.Key != ConsoleKey.NumPad1)
+{
+    Console.WriteLine("\nInvalid selection. Exiting...");
+    Thread.Sleep(2000);
+    return;
+}
+
+Console.WriteLine("1");
+
+await ConsoleUtils.DisplayLoadingScreen();
+
+await OffsetManager.Load();
+
+await Renderer.CheckAndDownloadFonts();
+
+Console.WriteLine("Starting MTRX-WARE...");
+Thread.Sleep(1000);
+Console.Clear();
 
 // init swed
 Swed swed = new Swed("cs2");
@@ -23,25 +71,24 @@ List<Entity> entities = new List<Entity>();
 Entity localPlayer = new Entity();
 Entity currentEntity = new Entity();
 
-
 // offsets
 
-// offsets.cs | 
-int dwEntityList = 0x1A020A8;
-int dwViewMatrix = 0x1A6B230;
-int dwLocalPlayerPawn = 0x18560B8;
+    // offsets.cs
+    int dwEntityList = OffsetManager.Offsets.dwEntityList;
+    int dwViewMatrix = OffsetManager.Offsets.dwViewMatrix;
+    int dwLocalPlayerPawn = OffsetManager.Offsets.dwLocalPlayerPawn;
 
-// client_dll.cs | 
-int m_vOldOrigin = 0x1324;
-int m_iTeamNum = 0x3E3;
-int m_lifeState = 0x348;
-int m_hPlayerPawn = 0x824;
-int m_vecViewOffset = 0xCB0;
-int m_iszPlayerName = 0x660;
-int m_modelState = 0x170;
-int m_pGameSceneNode = 0x328;
-int m_entitySpottedState = 0x23D0;
-int m_bSpotted = 0x8;
+    // client_dll.cs
+    int m_vOldOrigin = OffsetManager.Offsets.m_vOldOrigin;
+    int m_iTeamNum = OffsetManager.Offsets.m_iTeamNum;
+    int m_lifeState = OffsetManager.Offsets.m_lifeState;
+    int m_hPlayerPawn = OffsetManager.Offsets.m_hPlayerPawn;
+    int m_vecViewOffset = OffsetManager.Offsets.m_vecViewOffset;
+    int m_iszPlayerName = OffsetManager.Offsets.m_iszPlayerName;
+    int m_modelState = OffsetManager.Offsets.m_modelState;
+    int m_pGameSceneNode = OffsetManager.Offsets.m_pGameSceneNode;
+    int m_entitySpottedState = OffsetManager.Offsets.m_entitySpottedState;
+    int m_bSpotted = OffsetManager.Offsets.m_bSpotted;
 
 // ESP loop
 while (true)
@@ -57,7 +104,7 @@ while (true)
 
     for (int i = 0; i < 64; i++)
     {
-        IntPtr currentController = swed.ReadPointer(listEntry, i * 0x78);
+        IntPtr currentController = swed.ReadPointer(listEntry, i * 0x70);
         if (currentController == IntPtr.Zero) continue;
 
         int pawnHandle = swed.ReadInt(currentController, m_hPlayerPawn);
@@ -66,7 +113,7 @@ while (true)
         IntPtr listEntry2 = swed.ReadPointer(entityList, 0x8 * ((pawnHandle & 0x7FFF) >> 9) + 0x10);
         if (listEntry2 == IntPtr.Zero) continue;
 
-        IntPtr currentPawn = swed.ReadPointer(listEntry2, 0x78 * (pawnHandle & 0x1FF));
+        IntPtr currentPawn = swed.ReadPointer(listEntry2, 0x70 * (pawnHandle & 0x1FF));
         if (currentPawn == IntPtr.Zero) continue;
 
         int lifeState = swed.ReadInt(currentPawn, m_lifeState);
@@ -104,6 +151,9 @@ while (true)
     renderer.UpdateLocalPlayer(localPlayer);
     renderer.UpdateEntities(entities);
 
-    // Sleep for a short time before next iteration (to avoid overloading the CPU)
-    // Thread.Sleep(1);
+    // Performance mode
+    if (renderer.GetPerformanceMode())
+    {
+        Thread.Sleep(1);
+    }
 }
